@@ -1,9 +1,11 @@
 import React from 'react';
+import ClientForm from '../pages/clientForm'
 
 const ClientAccount = () => {
   return (
     <div>
       <h1>Espace client public</h1>
+      <ClientForm />
     </div>
   );
 };
