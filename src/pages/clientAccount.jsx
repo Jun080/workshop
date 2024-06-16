@@ -1,5 +1,5 @@
 import React from 'react';
-import ClientForm from '../pages/clientForm'
+import ClientForm from '../components/clientForm'
 
 const ClientAccount = () => {
   return (

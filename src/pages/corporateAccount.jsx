@@ -1,5 +1,5 @@
 import React from 'react';
-import CorporateForm from '../pages/corporateForm.jsx'
+import CorporateForm from '../components/corporateForm.jsx'
 
 const CorporateAccount = () => {
   return (

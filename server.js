@@ -2,12 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 const port = 3001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+const SECRET_KEY = 'votre_secret_key';
 
 app.use(cors());
 
@@ -56,6 +59,33 @@ app.post('/api/corporate_clients', (req, res) => {
         console.log('1 enregistrement inséré');
         res.status(200).json({ message: 'Entreprise ajoutée avec succès' });
     });    
+});
+
+// connexion au compte client
+app.post('/api/login', (req, res) => {
+    const { email, password, userType } = req.body;
+
+    const table = userType === 'users';
+
+    connection.query(`SELECT * FROM ${table} WHERE email = ?`, [email], async (err, results) => {
+        if (err) {
+            return res.status(500).send('Erreur du serveur.');
+        }
+
+        if (results.length === 0) {
+            return res.status(400).send('Email ou mot de passe incorrect.');
+        }
+
+        const user = results[0];
+
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (!validPassword) {
+            return res.status(400).send('Email ou mot de passe incorrect.');
+        }
+
+        const token = jwt.sign({ id: user.id, userType }, SECRET_KEY, { expiresIn: '1h' });
+        res.json({ token });
+    });
 });
 
 
