@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/workshop/static/css/main.84337319.css",
+    "main.js": "/workshop/static/js/main.366773c8.js",
+    "static/js/453.250206f5.chunk.js": "/workshop/static/js/453.250206f5.chunk.js",
+    "static/media/horizon.otf": "/workshop/static/media/horizon.3d45dd95383aa5807d4b.otf",
+    "index.html": "/workshop/index.html",
+    "main.84337319.css.map": "/workshop/static/css/main.84337319.css.map",
+    "main.366773c8.js.map": "/workshop/static/js/main.366773c8.js.map",
+    "453.250206f5.chunk.js.map": "/workshop/static/js/453.250206f5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84337319.css",
+    "static/js/main.366773c8.js"
+  ]
+}
