@@ -15,7 +15,7 @@ const CorporateForm = () => {
                 throw new Error('Le nom de l\'entreprise est requis.');
             }
 
-            const response = await axios.post('${process.env.REACT_APP_API_URL}/api/corporate_clients', {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/corporate_clients`, {
                 company_name: companyName,
                 company_email: companyEmail,
                 company_password: companyPassword
