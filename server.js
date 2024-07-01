@@ -26,67 +26,71 @@ db.connect(err => {
         console.error('Error connecting to the database:', err);
         return;
     }
-    console.log('Connected to the database');
 });
 
 // pour ajouter les données des clients dans la table users
-app.post('/api/users', (req, res) => {
+app.post('/api/users', async (req, res) => {
     const { nom, prénom, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const sql = 'INSERT INTO users (nom, prénom, email, password) VALUES (?, ?, ?, ?)';
-    db.query(sql, [nom, prénom, email, password], (err, result) => {
+    db.query(sql, [nom, prénom, email, hashedPassword], (err, result) => {
         if (err) {
             console.error('Error inserting data:', err);
             res.status(500).json({ error: 'Error inserting data' });
             return;
         }
-        console.log('1 record inserted');
         res.status(200).json({ message: 'User added successfully' });
     });    
 });
 
 // pour ajouter les données des entreprises dans la table corporate_clients
-app.post('/api/corporate_clients', (req, res) => {
+app.post('/api/corporate_clients', async (req, res) => {
     const { company_name, company_email, company_password } = req.body;
+    const hashedPassword = await bcrypt.hash(company_password, 10);
 
     const sql = 'INSERT INTO corporate_clients (company_name, company_email, company_password) VALUES (?, ?, ?)';
-    db.query(sql, [company_name, company_email, company_password], (err, result) => {
+    db.query(sql, [company_name, company_email, hashedPassword], (err, result) => {
         if (err) {
             console.error('Erreur lors de l\'insertion des données :', err);
             res.status(500).json({ error: 'Erreur lors de l\'insertion des données' });
             return;
         }
-        console.log('1 enregistrement inséré');
         res.status(200).json({ message: 'Entreprise ajoutée avec succès' });
     });    
 });
 
-// connexion au compte client
+// Route de connexion
 app.post('/api/login', (req, res) => {
-    const { email, password, userType } = req.body;
+    const { email, password } = req.body;
 
-    const table = userType === 'users';
-
-    connection.query(`SELECT * FROM ${table} WHERE email = ?`, [email], async (err, results) => {
+    const sql = 'SELECT * FROM users WHERE email = ?';
+    db.query(sql, [email], async (err, results) => {
         if (err) {
-            return res.status(500).send('Erreur du serveur.');
+            console.error('Erreur lors de la recherche de l\'utilisateur :', err);
+            res.status(500).json({ error: 'Erreur lors de la recherche de l\'utilisateur' });
+            return;
         }
-
         if (results.length === 0) {
-            return res.status(400).send('Email ou mot de passe incorrect.');
+            res.status(401).json({ error: 'Email ou mot de passe incorrect' });
+            return;
         }
 
         const user = results[0];
 
-        const validPassword = await bcrypt.compare(password, user.password);
-        if (!validPassword) {
-            return res.status(400).send('Email ou mot de passe incorrect.');
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
+            res.status(401).json({ error: 'Email ou mot de passe incorrect' });
+            return;
         }
 
-        const token = jwt.sign({ id: user.id, userType }, SECRET_KEY, { expiresIn: '1h' });
-        res.json({ token });
+        const token = jwt.sign({ userId: user.id, nom: user.nom }, SECRET_KEY, { expiresIn: '1h' });
+        res.status(200).json({ token, nom: user.nom });
     });
 });
+
+
 
 
 app.listen(port, () => {
