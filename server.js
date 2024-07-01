@@ -4,14 +4,14 @@ const mysql = require('mysql');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-require('dotenv').config(); // Charge les variables d'environnement depuis un fichier .env
+require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3001; // Utilise le port défini dans les variables d'environnement ou 3001 par défaut
+const port = process.env.PORT;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-const SECRET_KEY = process.env.SECRET_KEY; // Utilise la clé secrète définie dans les variables d'environnement
+const SECRET_KEY = process.env.SECRET_KEY;
 
 app.use(cors());
 
