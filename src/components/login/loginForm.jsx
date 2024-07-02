@@ -12,7 +12,7 @@ const LoginForm = ({ onLogin }) => {
         console.log('Password:', password);
 
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/login`, {
+            const response = await axios.post(`http://localhost:3001/api/login`, {
                 email,
                 password
             });

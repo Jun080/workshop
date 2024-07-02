@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { jwtDecode } from 'jwt-decode'; 
 
-import UserForm from '../components/form/UserForm';
+// import UserForm from '../components/form/UserForm';
 import LoginForm from '../components/login/loginForm';
 import CorporateForm from '../components/form/corporateForm.jsx'
 

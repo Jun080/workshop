@@ -36,7 +36,7 @@ const ClientAccount = () => {
               </>
           ) : (
               <>
-                  <h1>Créer un compte client</h1>
+                  <h1>Créer un compte</h1>
                   <UserForm />
                   <LoginForm onLogin={handleLogin} />
               </>

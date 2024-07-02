@@ -16,7 +16,7 @@ const UserForm = () => {
                 throw new Error('Le nom est requis.');
             }
 
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/users`, {
+            const response = await axios.post(`http://localhost:3001/api/users`, {
                 nom,
                 prénom,
                 email,
