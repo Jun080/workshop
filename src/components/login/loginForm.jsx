@@ -22,7 +22,7 @@ const LoginForm = ({ onLogin }) => {
             // Stocker le jeton dans le localStorage
             localStorage.setItem('token', token);
 
-            // Appeler la fonction onLogin avec le nom de l'utilisateur 
+            // Appeler la fonction onLogin avec le nom de l'utilisateur
             onLogin(nom);
 
             setEmail('');
