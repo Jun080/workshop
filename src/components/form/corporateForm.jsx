@@ -14,7 +14,6 @@ const CorporateForm = () => {
             if (!companyName) {
                 throw new Error('Le nom de l\'entreprise est requis.');
             }
-
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/corporate_clients`, {
                 company_name: companyName,
                 company_email: companyEmail,
@@ -41,7 +40,7 @@ const CorporateForm = () => {
                 <input type="password" placeholder="Mot de passe de l'entreprise" value={companyPassword} onChange={(e) => setCompanyPassword(e.target.value)} required />
                 <button type="submit">Ajouter entreprise</button>
             </form>
-            {message && <p>{message}</p>}               
+            {message && <p>{message}</p>}
         </div>
     );
 };

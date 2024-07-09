@@ -22,19 +22,25 @@ const UserForm = () => {
                 email,
                 password
             });
-            console.log(response.data);
 
+            console.log(response.data);
             setNom('');
             setPrénom('');
             setEmail('');
             setPassword('');
-
             setMessage('Utilisateur ajouté avec succès.');
+
         } catch (error) {
-            console.error('There was an error adding the user!', error.message);
-            setMessage('Utilisateur non ajouté.');
+            console.error('Erreur lors de l\'ajout de l\'utilisateur :', error);
+
+            if (error.response) {
+                console.error('Response data:', error.response.data);
+            }
+
+            setMessage('Utilisateur non ajouté. Veuillez vérifier les informations saisies.');
         }
     };
+
 
     return (
         <div>
@@ -45,7 +51,7 @@ const UserForm = () => {
                 <input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} required />
                 <button type="submit">Ajouter utilisateur</button>
             </form>
-            {message && <p>{message}</p>}            
+            {message && <p>{message}</p>}
         </div>
     );
 };

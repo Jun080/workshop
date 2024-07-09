@@ -5,16 +5,100 @@
     src: url('../fonts/horizon.otf') format('opentype');
 }
 
+body {
+    background-color: var(--cassis);
+}
+
+* {
+    transition: all 0.5s;
+}
+
 :root {
     --peach: #fe8879;
     --cassis: #6c37ff;
+    --black: #1b1b1b;
+    --white: #F8F9FF;
 }
 
 h1 {
     font-family: 'Horizon', sans-serif;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 400;
 }
 
-p,
-a {
+h2 {
+    font-family: 'Horizon', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+h3 {
+    font-family: 'Horizon', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+p {
     font-family: "Quicksand", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+a,
+a:hover {
+    font-family: "Quicksand", sans-serif !important;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.btn {
+    display: flex;
+    height: 40px;
+    max-width: max-content;
+    border-radius: 10px;
+    justify-content: center;
+    align-content: center;
+}
+
+.btn-peach {
+    background-color: var(--peach);
+    color: var(--white);
+    border: 2px solid var(--peach);
+}
+
+.btn-cassis {
+    background-color: var(--cassis);
+    color: var(--white);
+    border: 2px solid var(--cassis);
+}
+
+.btn-peach:hover {
+    background-color: transparent;
+    color: var(--peach);
+    border: 2px solid var(--peach);
+}
+
+.btn-cassis:hover {
+    background-color: transparent;
+    color: var(--cassis);
+    border: 2px solid var(--cassis);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form input {
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
 }
