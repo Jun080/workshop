@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import '../../cssPages/account.css'
+
 const UserForm = () => {
     const [nom, setNom] = useState('');
     const [prénom, setPrénom] = useState('');
@@ -45,10 +47,28 @@ const UserForm = () => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Nom" value={nom} onChange={(e) => setNom(e.target.value)} required />
-                <input type="text" placeholder="Prénom" value={prénom} onChange={(e) => setPrénom(e.target.value)} required />
-                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                <input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <div>
+                    <div className='form-grid'>
+                        <div>
+                            <h3>Nom</h3>
+                            <input type="text" placeholder="Nom" value={nom} onChange={(e) => setNom(e.target.value)} required/>
+                        </div>
+                        <div>
+                            <h3>Prénom</h3>
+                            <input type="text" placeholder="Prénom" value={prénom} onChange={(e) => setPrénom(e.target.value)} required/>
+                        </div>
+                    </div>
+                    <div className='form-grid'>
+                        <div>
+                            <h3>Adresse mail</h3>
+                            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                        </div>
+                        <div>
+                            <h3>Mot de passe</h3>
+                            <input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                        </div>
+                    </div>
+                </div>
                 <button type="submit">Ajouter utilisateur</button>
             </form>
             {message && <p>{message}</p>}

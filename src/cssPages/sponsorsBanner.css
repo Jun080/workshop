@@ -1,0 +1,30 @@
+.banner-sponsors {
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.banner-track {
+    display: inline-block;
+    animation: bounce 80s linear infinite;
+}
+
+.banner-logo {
+    display: inline-block;
+    margin-right: 70px;
+    height: 50px;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(calc(-100% + 100vw));
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

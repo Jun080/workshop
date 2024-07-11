@@ -37,8 +37,7 @@ const CorporateAccount = () => {
     };
 
     return (
-        <div>
-            <h1>Espace entreprise</h1>
+        <div className='account'>
             {user && !user.nom ? (
                 <>
                     <h1>Bienvenue {user.company_name} !</h1>
@@ -53,9 +52,8 @@ const CorporateAccount = () => {
                             <CorporateForm />
                             <p>
                                 Vous avez déjà un compte ?{' '}
-                                <button onClick={toggleForm}>
-                                    Connectez-vous
-                                </button>
+                                {/* eslint-disable-next-line */}
+                                <a onClick={toggleForm} className='a-peach'>Connectez-vous</a>
                             </p>
                         </>
                     ) : (
@@ -64,9 +62,8 @@ const CorporateAccount = () => {
                             <LoginFormCorporate onLogin={handleLogin} />
                             <p>
                                 Vous n'avez pas de compte ?{' '}
-                                <button onClick={toggleForm}>
-                                    Créez-en un
-                                </button>
+                                {/* eslint-disable-next-line */}
+                                <a onClick={toggleForm} className='a-peach'>Créez-en un</a>
                             </p>
                         </>
                     )}

@@ -6,11 +6,7 @@
 }
 
 body {
-    background-color: var(--cassis);
-}
-
-* {
-    transition: all 0.5s;
+    background-color: var(--white);
 }
 
 :root {
@@ -32,6 +28,29 @@ h2 {
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
+}
+
+h1:before {
+    content: "";
+    position: absolute;
+    background: rgb(50,60,255);
+    background: linear-gradient(90deg,
+        rgba(50,60,255,1) 3%,
+        rgba(152,33,255,1) 8%,
+        rgba(255,18,212,1) 18%,
+        rgba(255,61,144,1) 31%,
+        rgba(255,117,117,1) 39%,
+        rgba(255,133,87,1) 48%,
+        rgba(255,151,119,1) 60%,
+        rgba(233,179,208,1) 73%,
+        rgba(199,186,209,1) 81%,
+        rgba(182,223,235,1) 92%,
+        rgba(166,241,255,1) 100%);
+    height: 25px;
+    left: 70px;
+    width: 30%;
+    z-index: -1;
+    transform: skewX(350deg);
 }
 
 h3 {
@@ -58,13 +77,31 @@ a:hover {
     text-decoration: none;
 }
 
-.btn {
+.black {
+    color: var(--black);
+}
+
+.white {
+    color: var(--white);
+}
+
+.cassis {
+    color: var(--cassis);
+}
+
+.peach {
+    color: var(--peach);
+}
+
+.btn,
+.btn:hover {
     display: flex;
     height: 40px;
     max-width: max-content;
     border-radius: 10px;
     justify-content: center;
     align-content: center;
+    font-weight: 500;
 }
 
 .btn-peach {
@@ -79,26 +116,60 @@ a:hover {
     border: 2px solid var(--cassis);
 }
 
-.btn-peach:hover {
+.btn-peach:hover,
+.btn-peach:active,
+.btn-peach.active {
     background-color: transparent;
     color: var(--peach);
     border: 2px solid var(--peach);
 }
 
-.btn-cassis:hover {
+.btn-cassis:hover,
+.btn-cassis:active,
+.btn-cassis.active {
     background-color: transparent;
     color: var(--cassis);
     border: 2px solid var(--cassis);
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.btn-peach-outline {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid var(--peach);
 }
 
-form input {
-    border: none;
-    padding: 10px;
-    border-radius: 10px;
+.btn-cassis-outline {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid var(--cassis);
+}
+
+.btn-peach-outline:hover,
+.btn-peach-outline:active {
+    background-color: transparent;
+    color: var(--peach);
+    border: 2px solid var(--peach);
+}
+
+.btn-cassis-outline:hover,
+.btn-cassis-outline:active {
+    background-color: transparent;
+    color: var(--cassis);
+    border: 2px solid var(--cassis);
+}
+
+.a-peach {
+    color: var(--peach);
+    font-weight: 600;
+}
+
+.a-cassis {
+    color: var(--cassis);
+    font-weight: 600;
+}
+
+.a-peach:hover,
+.a-cassis:hover {
+    font-weight: 600;
+    cursor: pointer;
 }
