@@ -97,7 +97,6 @@ const MentoringDetails = () => {
             </div>
             {isUserLoggedIn && userDetails ? (
                 <>
-                    <h1>Bonjour {userDetails.prénom} {userDetails.nom} !</h1>
                     {isUserRegistered ? (
                         <p>Vous êtes déjà inscrit à cette session de mentoring.</p>
                     ) : (

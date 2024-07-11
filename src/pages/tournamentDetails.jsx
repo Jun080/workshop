@@ -11,6 +11,8 @@ const TournamentDetails = () => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [isUserRegistered, setIsUserRegistered] = useState(false);
     const [userDetails, setUserDetails] = useState(null);
+    const [filteredTournaments, setFilteredTournaments] = useState([]);
+
 
     useEffect(() => {
         const fetchTournament = async () => {
@@ -91,20 +93,30 @@ const TournamentDetails = () => {
         <div>
             <div>
                 <h1>{tournament.name}</h1>
-                <p><span>Jeu:</span> {tournament.game}</p>
-                <p><span>Format:</span> {tournament.format}</p>
-                <p><span>Date:</span> {formatDate(tournament.date)}</p>
-                <p><span>Lieu:</span> {tournament.localisation}</p>
-                <p><span>Prix:</span> {tournament.prices}</p>
-                <p><span>Description:</span> {tournament.description}</p>
+                <div>
+                    <p><span>Jeu:</span> {tournament.game}</p>
+                    <p><span>Format:</span> {tournament.format}</p>
+                    <p><span>Date:</span> {formatDate(tournament.date)}</p>
+                    <p><span>Lieu:</span> {tournament.localisation}</p>
+                    <p><span>Prix:</span> {tournament.prices}</p>
+                    <p><span>Description:</span> {tournament.description}</p>
+                </div>
+                {filteredTournaments[0].filename && filteredTournaments[0].filepath && (
+                    <img
+                        src={`/${filteredTournaments[0].filepath}`}
+                        alt={filteredTournaments[0].filename}
+                        className='col-lg-5'
+                    />
+                )}
+
             </div>
             {isUserLoggedIn && userDetails ? (
                 <>
-                    <h1>Bonjour {userDetails.prénom} {userDetails.nom} !</h1>
                     {isUserRegistered ? (
                         <p>You are already registered for this tournament.</p>
                     ) : (
-                        <button onClick={handleRegistration}>Je m'inscris au tournoi !</button>
+                        <button onClick={handleRegistration} className='btn btn-peach'>Je m'inscris au tournoi
+                            !</button>
                     )}
                 </>
             ) : (

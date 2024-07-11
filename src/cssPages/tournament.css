@@ -1,5 +1,5 @@
 .tournament-list h1 {
-    margin-bottom: 30px;
+    margin: 50px 0 30px;
 }
 
 .tournament-list .all-tournaments-title {
@@ -12,7 +12,8 @@
     gap: 20px;
 }
 
-.cards-tournament-grid {
+.cards-tournament-grid,
+.filters{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
@@ -69,4 +70,12 @@
 
 .first-card-tournament img {
     border-radius: 15px;
+}
+
+select,
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--black);
+    width: 100%;
 }
