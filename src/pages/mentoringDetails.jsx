@@ -5,24 +5,24 @@ import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { jwtDecode } from 'jwt-decode';
 
-const TournamentDetails = () => {
+const MentoringDetails = () => {
     const { id } = useParams();
-    const [tournament, setTournament] = useState(null);
+    const [mentoring, setMentoring] = useState(null);
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [isUserRegistered, setIsUserRegistered] = useState(false);
     const [userDetails, setUserDetails] = useState(null);
 
     useEffect(() => {
-        const fetchTournament = async () => {
+        const fetchMentoring = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/tournaments/${id}`);
-                setTournament(response.data);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/mentorings/${id}`);
+                setMentoring(response.data);
             } catch (error) {
-                console.error('Error fetching tournament:', error);
+                console.error('Error fetching mentoring session:', error);
             }
         };
 
-        fetchTournament();
+        fetchMentoring();
 
         const token = localStorage.getItem('token');
         if (token) {
@@ -44,7 +44,7 @@ const TournamentDetails = () => {
             }
 
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user-tournaments/${id}`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user-mentorings/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setIsUserRegistered(response.data.isRegistered);
@@ -53,10 +53,10 @@ const TournamentDetails = () => {
             }
         };
 
-        if (tournament && userDetails) {
+        if (mentoring && userDetails) {
             checkUserRegistration();
         }
-    }, [tournament, userDetails, id]);
+    }, [mentoring, userDetails, id]);
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -71,45 +71,42 @@ const TournamentDetails = () => {
                 return;
             }
 
-            await axios.post(`${process.env.REACT_APP_API_URL}/api/user-tournaments/register/${id}`, {}, {
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/user-mentorings/register/${id}`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setIsUserRegistered(true);
         } catch (error) {
-            console.error('Error registering user to tournament:', error);
+            console.error('Error registering user to mentoring session:', error);
             if (error.response && error.response.status === 401) {
                 // Gérer le cas où l'utilisateur n'est pas autorisé
             }
         }
     };
 
-    if (!tournament) {
+    if (!mentoring) {
         return <div>Loading...</div>;
     }
 
     return (
         <div>
             <div>
-                <h1>{tournament.name}</h1>
-                <p><span>Jeu:</span> {tournament.game}</p>
-                <p><span>Format:</span> {tournament.format}</p>
-                <p><span>Date:</span> {formatDate(tournament.date)}</p>
-                <p><span>Lieu:</span> {tournament.localisation}</p>
-                <p><span>Prix:</span> {tournament.prices}</p>
-                <p><span>Description:</span> {tournament.description}</p>
+                <h1>{mentoring.mentor}</h1>
+                <p><span>Description:</span> {mentoring.description}</p>
+                <p><span>Date:</span> {formatDate(mentoring.date)}</p>
+                <p><span>Lieu:</span> {mentoring.localisation}</p>
             </div>
             {isUserLoggedIn && userDetails ? (
                 <>
                     <h1>Bonjour {userDetails.prénom} {userDetails.nom} !</h1>
                     {isUserRegistered ? (
-                        <p>You are already registered for this tournament.</p>
+                        <p>Vous êtes déjà inscrit à cette session de mentoring.</p>
                     ) : (
-                        <button onClick={handleRegistration}>Je m'inscris au tournoi !</button>
+                        <button onClick={handleRegistration}>Je m'inscris à la session de mentoring !</button>
                     )}
                 </>
             ) : (
                 <div>
-                    <p>Connectez-vous pour vous inscrire à ce tournoi :</p>
+                    <p>Connectez-vous pour vous inscrire à cette session de mentoring :</p>
                     <Link to="/compte-client" className='btn btn-peach'>Espace Client</Link>
                 </div>
             )}
@@ -117,4 +114,4 @@ const TournamentDetails = () => {
     );
 };
 
-export default TournamentDetails;
+export default MentoringDetails;

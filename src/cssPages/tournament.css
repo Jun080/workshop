@@ -1,5 +1,9 @@
-.tournament-list {
-    padding: 20px;
+.tournament-list h1 {
+    margin-bottom: 30px;
+}
+
+.tournament-list .all-tournaments-title {
+    margin: 70px 0 30px;
 }
 
 .cards {
@@ -8,18 +12,61 @@
     gap: 20px;
 }
 
-.card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    width: 300px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.cards-tournament-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
 }
 
-.details-link {
-    display: inline-block;
-    margin-top: 10px;
-    color: #007bff;
-    text-decoration: none;
+.card-tournament {
+    padding: 30px;
+    background-color: var(--cassis);
+    border: 5px solid var(--cassis);
+    color: var(--white);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s;
+}
+
+.card-tournament:hover {
+    background-color: var(--white);
+    box-shadow: 10px 10px var(--cassis);
+    color: var(--black);
+    border: 5px solid var(--cassis);
+}
+
+.card-tournament span,
+.first-card-tournament span{
+    font-weight: bold;
+}
+
+.card-tournament .btn,
+.first-card-tournament .btn {
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+.first-card-tournament {
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 5px solid var(--cassis);
+    transition: all 0.5s;
+}
+
+.first-card-tournament:hover {
+    box-shadow: 10px 10px var(--cassis);
+}
+
+.first-card-tournament .infos {
+    width: 45%;
+    margin: 0 auto;
+}
+
+.first-card-tournament img {
+    border-radius: 15px;
 }

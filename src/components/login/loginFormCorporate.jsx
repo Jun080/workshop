@@ -1,6 +1,7 @@
-// loginFormCorporate.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
+
+import '../../cssPages/account.css'
 
 const LoginFormCorporate = ({ onLogin }) => {
     const [companyEmail, setCompanyEmail] = useState('');
@@ -34,21 +35,27 @@ const LoginFormCorporate = ({ onLogin }) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    placeholder="Email de l'entreprise"
-                    value={companyEmail}
-                    onChange={(e) => setCompanyEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Mot de passe de l'entreprise"
-                    value={companyPassword}
-                    onChange={(e) => setCompanyPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Se connecter</button>
+                <div>
+                    <p>Email*</p>
+                    <input
+                        type="email"
+                        placeholder="Email de l'entreprise"
+                        value={companyEmail}
+                        onChange={(e) => setCompanyEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <p>Mot de passe*</p>
+                    <input
+                        type="password"
+                        placeholder="Mot de passe de l'entreprise"
+                        value={companyPassword}
+                        onChange={(e) => setCompanyPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit" className='btn btn-peach'>Connexion</button>
             </form>
             {message && <p>{message}</p>}
         </div>
