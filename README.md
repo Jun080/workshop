@@ -5,10 +5,12 @@ Le site internet a été développé avec React pour le front, Node pour le back
 
 ## Démarrer le projet
 Pour démarrer le projet localement:
-`git clone https://github.com/Jun080/workshop.git`
-`cd workshopjo`
-`npm install`
-`npm start`
+```
+git clone https://github.com/Jun080/workshop.git
+cd workshopjo
+npm install
+npm start
+```
 
 ## Équipe
 ### Marketing:
